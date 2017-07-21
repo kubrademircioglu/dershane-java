@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<f:view>
+		<h:form id="kayitform">
+			<h3>DERSHANE OTOMASYON SİSTEMİ</h3>
+			<p:tabView orientation="left">
+
+				<!--1. TAB BAŞLANGIÇ -->
+				<p:tab title="Öğrenci Ekle">
+					<h:panelGrid id="grid" columns="2" cellpadding="5">
+						<p:outputLabel value="Ad: " />
+						<p:inputText value="#{yonetimBean.ogrenci.ad}" />
+
+						<p:outputLabel value="Soyad: " />
+						<p:inputText value="#{yonetimBean.ogrenci.soyad}" />
+
+						<p:outputLabel value="Cinsiyet: " />
+						<p:selectOneRadio value="#{yonetimBean.ogrenci.cinsiyet}">
+							<f:selectItem itemValue="erkek" itemLabel="Erkek" />
+							<f:selectItem itemValue="kadin" itemLabel="Kadın" />
+						</p:selectOneRadio>
+
+						<p:outputLabel value="Doğum Yeri: " />
+						<p:selectOneMenu value="#{yonetimBean.ogrenci.dogumYeri}">
+							<f:selectItem itemValue="ankara" itemLabel="Ankara" />
+							<f:selectItem itemValue="istanbul" itemLabel="İstanbul" />
+							<f:selectItem itemValue="adana" itemLabel="Adana" />
+							<f:selectItem itemValue="duzce" itemLabel="Düzce" />
+						</p:selectOneMenu>
+
+						<p:outputLabel value="Doğum Tarihi: " />
+						<p:calendar value="#{yonetimBean.ogrenci.dogumTarihi}" />
+
+						<p:outputLabel value="Adres: " />
+						<p:inputTextarea value="#{yonetimBean.ogrenci.adres}" />
+
+						<p:outputLabel value="Dönem: " />
+						<p:inputText value="#{yonetimBean.ogrenci.donem}" />
+
+						<p:outputLabel value="Sınıf: " />
+						<p:selectOneMenu value="#{sinifyonetim.sinif}">
+							<f:selectItem itemLabel="Sınıf seçinizz" itemValue="" />
+							<f:selectItems value="#{sinifyonetim.siniff}" />
+						</p:selectOneMenu>
+
+						<p:outputLabel value="Okul Numarası: " />
+						<p:inputText value="" />
+						
+						<p:commandButton value="Kaydet"
+							actionListener="#{yonetimBean.kaydet()}" update="kayitform"
+							ajax="false" />
+					</h:panelGrid>
+				</p:tab>
+				<!--1. TAB BİTİŞ -->
+
+				<!--2. TAB BAŞLANGIÇ -->
+				<p:tab title="Öğrenci Listesi">
+					<h:panelGrid columns="2" cellpadding="10">
+						<p:dataTable var="yonetim" value="#{yonetimBean.ogrenclistesi}">
+
+							<p:column headerText="Okul No">
+								<h:outputText value="" />
+							</p:column>
+							<p:column headerText="Ad">
+								<h:outputText value="#{yonetim.ad}" />
+							</p:column>
+
+							<p:column headerText="Soyad">
+								<h:outputText value="#{yonetim.soyad}" />
+							</p:column>
+
+							<p:column headerText="Cinsiyet">
+								<h:outputText value="#{yonetim.cinsiyet}" />
+							</p:column>
+
+							<p:column headerText="Doğum yeri">
+								<h:outputText value="#{yonetim.dogumYeri}" />
+							</p:column>
+
+							<p:column headerText="Doğum Tarihi">
+								<h:outputText value="#{yonetim.dogumTarihi}" />
+							</p:column>
+							<p:column headerText="Adres">
+								<h:outputText value="#{yonetim.dogumYeri}" />
+							</p:column>
+							<p:column headerText="Sınıf">
+								<h:outputText value="#{sinifyonetim.sinif}" />
+							</p:column>
+							<p:column headerText="Dönem">
+								<h:outputText value="#{yonetim.donem}" />
+							</p:column>
+
+						</p:dataTable>
+
+					</h:panelGrid>
+				</p:tab>
+				<!--2. TAB BİTİŞ -->
+
+				<!--3. TAB BAŞLANGIÇ -->
+				<p:tab title="Sınıf Ekle">
+					<h:panelGrid columns="2" cellpadding="10">
+						<p:outputLabel value="Sınıf: " />
+						<p:inputText />
+
+						<p:button value="Kaydet"></p:button>
+					</h:panelGrid>
+				</p:tab>
+				<!--3. TAB BİTİŞ -->
+
+				<!--4. TAB BAŞLANGIÇ -->
+				<p:tab title="Kullanıcı Ekle">
+					<h:panelGrid columns="2" cellpadding="10">
+						<p:outputLabel value="Kullanıcı Adı: " />
+						<p:inputText />
+
+						<p:outputLabel value="Şifre: " />
+						<p:password />
+
+						<p:outputLabel value="Yetki: " />
+						<p:selectOneMenu>
+							<f:selectItem itemLabel="Öğrenci" itemValue="ogrenci" />
+							<f:selectItem itemLabel="Yönetici" itemValue="yonetici" />
+						</p:selectOneMenu>
+					</h:panelGrid>
+				</p:tab>
+				<!--4. TAB BİTİŞ -->
+
+			</p:tabView>
+		</h:form>
+	</f:view>
+</body>
+</html>
